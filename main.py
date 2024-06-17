@@ -11,7 +11,7 @@ spaceString = " "
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
-
+# start the discord bot
 
 @client.event
 async def on_message(message):
@@ -25,15 +25,17 @@ async def on_message(message):
          await message.channel.send(serverListString)
 
     if message.content.startswith('$channels'):
-        serverID = message.content.split(" ")[1]
         serverID = message.content.split(spaceString)[1]
         guild = client.get_guild(int(serverID))
         strChannels = "" + guild.name + "\n"
+        printIDs = " " + guild.name + "\n"
         for channel in guild.channels:
-          strChannels = strChannels + channel.name + "\n"
+          strChannels = strChannels + channel.name + "\n" 
+          printIDs = printIDs + channel.name + " " + str(channel.id) + "\n"
 
         strChannels = strChannels[0:2000]
         await message.channel.send(strChannels)
+        print(printIDs)
 
     channelID = ""
     content = ""
@@ -47,9 +49,6 @@ async def on_message(message):
         channel = client.get_channel(int(channelID))
         await channel.send(content)
 
-
-
-    
 
   
 client.run('nonono upload ur own token')
