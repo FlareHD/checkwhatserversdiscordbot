@@ -20,13 +20,8 @@ async def on_message(message):
 
     if message.content.startswith('$servers'):
          serverListString = ""
-         str1 = ""
-         for guild in client.guilds:
-            str1 = str1 + guild.name + ": " + str(guild.id) + "\n"
          for guild in client.guilds:
             serverListString = serverListString + guild.name + ": " + str(guild.id) + "\n"
-
-         await message.channel.send(str1)
          await message.channel.send(serverListString)
 
     if message.content.startswith('$channels'):
@@ -35,7 +30,6 @@ async def on_message(message):
         guild = client.get_guild(int(serverID))
         strChannels = "" + guild.name + "\n"
         for channel in guild.channels:
-          strChannels = strChannels + channel.name + "\n"
           strChannels = strChannels + channel.name + "\n"
 
         strChannels = strChannels[0:2000]
@@ -58,4 +52,4 @@ async def on_message(message):
     
 
   
-client.run('hahaha upload your own token sausage')
+client.run('nonono upload ur own token')
