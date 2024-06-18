@@ -1,6 +1,5 @@
 import discord
 
-
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -19,10 +18,11 @@ async def on_message(message):
         return
 
     if message.content.startswith('$servers'):
-         serverListString = ""
-         for guild in client.guilds:
+        serverListString = ""
+        for guild in client.guilds:
             serverListString = serverListString + guild.name + ": " + str(guild.id) + "\n"
-         await message.channel.send(serverListString)
+        await message.channel.send(serverListString)
+        return
 
     if message.content.startswith('$channels'):
         serverID = message.content.split(spaceString)[1]
@@ -30,12 +30,13 @@ async def on_message(message):
         strChannels = "" + guild.name + "\n"
         printIDs = " " + guild.name + "\n"
         for channel in guild.channels:
-          strChannels = strChannels + channel.name + "\n" 
+          strChannels = strChannels + channel.name + "\n"
           printIDs = printIDs + channel.name + " " + str(channel.id) + "\n"
 
         strChannels = strChannels[0:2000]
         await message.channel.send(strChannels)
         print(printIDs)
+        return
 
     channelID = ""
     content = ""
@@ -48,7 +49,6 @@ async def on_message(message):
         print(content)
         channel = client.get_channel(int(channelID))
         await channel.send(content)
+        return
 
-
-  
 client.run('nonono upload ur own token')
